@@ -4,7 +4,7 @@
       <div class="row maincontainer">
         <div class="column col-sm-10 col-md-5">
           <div class="column col-md-10 q-mt-sm q-gutter-md loginformcontainer">
-            <h5>Join us :)</h5>
+            <component :is="stepscomponent" :items="item" :activated="activestep"></component>
             <q-input outlined rounded label="email" v-model="email">
               <template v-slot:prepend>
                 <q-icon name="email" />
@@ -134,16 +134,19 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
-import formcontent from "../components/formcontent.vue"
+import { defineComponent, ref , provide } from "vue";
+import formcontent from "../components/formcontent.vue";
+import stepscomponent from "../components/stepscomponent.vue";
 
 export default defineComponent({
   components: {
-    formcontent
+    formcontent,
+    stepscomponent
     },
   name: "SignupPage",
   setup() {
     const formcontent = 'formcontent';
+    const stepscomponent ='stepscomponent'
     const email = ref("");
     const password = ref("");
     const lengthvalidation = ref(false);
@@ -153,6 +156,10 @@ export default defineComponent({
     const conditionstoggle = ref(false);
     const passwordvisibility = ref(false);
     const retype = ref("");
+    const items = ref(['enter email','verfy email','set password'])
+    const activestep = ref(1)
+    provide('items', items);
+    provide('activated',activestep)
 
     const togglepasswordvisibility = () => {
       passwordvisibility.value = !passwordvisibility.value;
@@ -211,6 +218,9 @@ export default defineComponent({
     };
 
     return {
+      stepscomponent,
+      activestep,
+      items,
       formcontent,
       passwordvisibility,
       email,

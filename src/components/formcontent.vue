@@ -13,7 +13,7 @@
             </ul>
             <router-link to="/signin" > Are you have account? </router-link>
             <div class="bottom-aligned-text">
-              <p>powered by amirekramian</p>
+              powered by amirekramian
             </div>
           </div>
 </template>
@@ -29,7 +29,7 @@ setup(){
 })
 </script>
 
-<style>
+<style scoped>
 .logincontentcontainer{
   display: flex;
   flex-direction: column;
@@ -43,5 +43,14 @@ setup(){
 }
 .LogoImage {
   width: 150px;
+}
+.bottom-aligned-text {
+  color: #b1b1b1;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: absolute; /* Position the text absolutely within the container */
+  bottom: 0; /* Align the text to the bottom */
+  /* Additional styles for the bottom-aligned text */
 }
 </style>

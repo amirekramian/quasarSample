@@ -25,7 +25,7 @@
               @click="conditionstogglechange"
             >
               <template v-slot:prepend>
-                <q-icon name="lock" />
+                <q-icon name="loc" />
               </template>
               <template v-slot:append>
                 <div @click="togglepasswordvisibility">
