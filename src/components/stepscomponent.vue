@@ -1,6 +1,5 @@
 <template>
   <div  class="row stepcontainer">
-
     <div v-for="(item,index) in items" :key="index" class="itemcontainer">
         <div class="circle" :class="{Disabledcircle:activated<index+1, previuoscircle:activated>index+1}">
             <div class="innercircle" :class="{Disabledinnercircle:activated<index+1, previuosinnercircle:activated>index+1}">

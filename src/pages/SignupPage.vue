@@ -10,7 +10,8 @@
                 <q-icon name="email" />
               </template>
             </q-input>
-            <q-input
+
+            <!-- <q-input
               outlined
               v-if="passwordvisibility"
               rounded
@@ -48,9 +49,9 @@
                   <q-icon name="visibility" />
                 </div>
               </template>
-            </q-input>
+            </q-input> -->
 
-            <q-input
+            <!-- <q-input
               outlined
               v-else
               rounded
@@ -89,9 +90,9 @@
                   <q-icon name="visibility" />
                 </div>
               </template>
-            </q-input>
+            </q-input> -->
 
-            <q-input
+            <!-- <q-input
               outlined
               rounded
               v-model="retype"
@@ -109,11 +110,11 @@
                   <q-icon name="check" color="green" />
                 </div>
               </template>
-            </q-input>
+            </q-input> -->
             <div class="row mt-2">
               <div class="column col-sm-8 col-md-8">
                 <q-btn rounded color="brown" @click="submitlogin">
-                  <q-icon name="login" /> signup
+                  <q-icon name="login" /> next step
                 </q-btn>
               </div>
 
