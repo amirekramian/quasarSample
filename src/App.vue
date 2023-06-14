@@ -1,5 +1,5 @@
-<template>
-  <router-view />
+<template >
+  <router-view class="body" />
 </template>
 
 <script>
@@ -9,3 +9,8 @@ export default defineComponent({
   name: 'App'
 })
 </script>
+<style scoped>
+.body{
+  background: #8D6748;
+}
+</style>
