@@ -113,8 +113,8 @@
             </q-input> -->
             <div class="row mt-2">
               <div class="column col-sm-8 col-md-8">
-                <q-btn rounded color="brown" @click="submitlogin">
-                  <q-icon name="login" /> next step
+                <q-btn to="signup2" rounded color="brown" @click="submitlogin">
+                  <q-icon name="next" /> next step
                 </q-btn>
               </div>
 
