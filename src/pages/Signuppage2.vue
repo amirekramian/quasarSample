@@ -2,31 +2,39 @@
     <q-page>
       <div class="centerizecontainer">
         <div class="row maincontainer">
-          <div class="column col-sm-10 col-md-5">
+          <div class="column col-sm-10 col-md-5 centerize">
             <div class="column col-md-10 q-mt-sm q-gutter-md loginformcontainer">
               <component :is="stepscomponent" :items="items" :activated="activestep"></component>
               <div class="codecontainer">
-            
-            <q-input class="codedigit" maxlength="1" outlined rounded v-model="code[0]">
-            </q-input>
-
-            <q-input class="codedigit" maxlength="1" outlined rounded v-model="code[1]">
-            </q-input>
-
-            <q-input class="codedigit" maxlength="1" outlined rounded v-model="code[2]">
-            </q-input>
-
-            <q-input class="codedigit" maxlength="1" outlined rounded v-model="code[3]">
-            </q-input>
-
-            <q-input class="codedigit" maxlength="1" outlined rounded v-model="code[4]">
+            <q-input 
+            v-for="(item , index) in code" 
+            :key="index" 
+            class="codedigit" 
+            maxlength="1" 
+            outlined 
+            rounded 
+            v-model="code[index]"
+            dense
+            @input="handleInput(index)"
+            @keydown="handleKeyDown(index,$event)"
+            ref="codeInputs">
             </q-input>
               </div>
 
+              <div v-if="second>0" class="brownpill">
+                {{ second }} seconds
+              </div>
+              
+              <div v-if="timerexpired = true" @click="resendcode" class="brownpill">
+                Time's up. get the new code
+              </div>
+
+              <router-link to="signup">wrong email?</router-link>
+
               <div class="row mt-2">
                 <div class="column col-sm-8 col-md-8">
-                  <q-btn rounded color="brown">
-                    <q-icon name="login" /> next step
+                  <q-btn rounded color="brown" to="signup3">
+                    next step
                   </q-btn>
                 </div>
   
@@ -40,14 +48,13 @@
           <div class="column col-sm-8 col-md-3">
                 <component :is="formcontent"></component>
           </div>
-  
         </div>
       </div>
     </q-page>
   </template>
   
   <script>
-  import { defineComponent, ref , provide } from "vue";
+  import { defineComponent, ref , provide, onMounted, onUnmounted } from "vue";
   import formcontent from "../components/formcontent.vue";
   import stepscomponent from "../components/stepscomponent.vue";
   
@@ -58,16 +65,65 @@
       },
     name: "SignupPage2",
     setup() {
-        const code =ref(["","","","",""])
+      const second = ref(120);
+      let timer;
+      const code =ref(["","","","",""])
       const formcontent = 'formcontent';
       const stepscomponent ='stepscomponent'
       const items = ref(['enter email','verfy email','set password'])
       const activestep = ref(2)
+      const timerexpired = ref(false)
+      const codeInputs = ref(["","","","",""])
+
+      const resendcode = () =>{
+        timerexpired.value = false
+        second.value = 120
+      }
+
+      const starttimer =() =>{
+        timer = setInterval(() => {
+          second.value--
+        }, 1000);
+      };
+
+      const stoptimer =()=>{
+        clearInterval(timer)
+        second.value =120
+      };
+      
+      onMounted(()=>{
+        starttimer();
+        timerexpired.value = false
+      });
+
+      onUnmounted(()=>{
+        stoptimer();
+        timerexpired.value = true
+      });
+
+      const handleInput = (index) =>{   
+        if (code.value[index].length === 1 && index < this.code.length - 1) {
+        $ref.codeInputs.value[index + 1].focus();
+      }
+    }
+
+      const handleKeyDown =(index,event)=>{
+        if (event.key === 'Backspace' && index > 0) {
+        event.preventDefault();
+        code.value[index] = '';
+        $ref.codeInputs.value[index - 1].focus();
+      }
+    }
       provide('items', items);
       provide('activated',activestep)
   
   
       return {
+        second,
+        timerexpired,
+        resendcode,
+        handleKeyDown,
+        handleInput,
         code,
         stepscomponent,
         activestep,
@@ -158,10 +214,24 @@
     justify-content: center;
   }
   .codedigit{
+    border-width: 2px;
     margin: 15px;
     width: 10%;
     text-align: center;
-    font-size: 1.2rem;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #9b7048;
+  }
+  .centerize{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .brownpill{
+    border-radius: 10px;
+    background: white;
+    color: #9b7048;
+    font-weight: bold;
   }
   </style>
   
