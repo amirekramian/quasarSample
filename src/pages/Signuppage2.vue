@@ -15,6 +15,7 @@
             rounded 
             v-model="code[index]"
             dense
+            @change="handleInput(index)"
             @input="handleInput(index)"
             @keydown="handleKeyDown(index,$event)"
             ref="codeInputs">
@@ -33,7 +34,7 @@
 
               <div class="row mt-2">
                 <div class="column col-sm-8 col-md-8">
-                  <q-btn rounded color="brown" to="signup3">
+                  <q-btn ref="submitkey" rounded color="brown" to="signup3">
                     next step
                   </q-btn>
                 </div>
@@ -73,7 +74,8 @@
       const items = ref(['enter email','verfy email','set password'])
       const activestep = ref(2)
       const timerexpired = ref(false)
-      const codeInputs = ref(["","","","",""])
+      const codeInputs = ref([])
+      const submitkey = ref("")
 
       const resendcode = () =>{
         timerexpired.value = false
@@ -92,6 +94,7 @@
       };
       
       onMounted(()=>{
+        codeInputs.value[0].focus()
         starttimer();
         timerexpired.value = false
       });
@@ -102,23 +105,28 @@
       });
 
       const handleInput = (index) =>{   
-        if (code.value[index].length === 1 && index < this.code.length - 1) {
-        $ref.codeInputs.value[index + 1].focus();
-      }
+          codeInputs.value[index+1].focus()  
     }
 
       const handleKeyDown =(index,event)=>{
-        if (event.key === 'Backspace' && index > 0) {
+        if (event.key === 'Backspace' && index > 0 && index<=code.value.length) {
         event.preventDefault();
         code.value[index] = '';
-        $ref.codeInputs.value[index - 1].focus();
+        codeInputs.value[index-1].focus()
+      }else if(event.key !='Alt'&&event.key !='Control' &&event.key !='Backspace' && event.key !='Shift'&& event.key !='Enter'&& event.key !='Tab'){
+
+          code.value[index] = event.key;
+          codeInputs.value[index+1].focus()
       }
+      console.log(index)
     }
       provide('items', items);
       provide('activated',activestep)
   
   
       return {
+        submitkey,
+        codeInputs,
         second,
         timerexpired,
         resendcode,
