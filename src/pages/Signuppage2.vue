@@ -8,15 +8,12 @@
               <div class="codecontainer">
             <q-input 
             v-for="(item , index) in code" 
-            :key="index" 
-            class="codedigit" 
+            :key="index"
+            input-class="codedigit"
+            class="codedigit"
             maxlength="1" 
-            outlined 
-            rounded 
             v-model="code[index]"
-            dense
-            @change="handleInput(index)"
-            @input="handleInput(index)"
+            color="brown"
             @keydown="handleKeyDown(index,$event)"
             ref="codeInputs">
             </q-input>
@@ -222,12 +219,11 @@
     justify-content: center;
   }
   .codedigit{
-    border-width: 2px;
     margin: 15px;
-    width: 10%;
     text-align: center;
-    justify-content: center;
-    font-size: 1.3rem;
+    width: 10%;
+    font-weight: bold;
+    font-size: 1.4rem;
     color: #9b7048;
   }
   .centerize{
