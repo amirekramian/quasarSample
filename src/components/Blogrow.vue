@@ -1,7 +1,7 @@
 <template>
   <div class="row blogrowcontainer">
         <div class="column blogrowimage col-md-3 col-sm-3 col-3">
-            <q-img class="image" src="~/src/assets/images.png">
+            <q-img class="image img-fluid" src="~/src/assets/images.png">
 
             </q-img>
         </div>
@@ -93,6 +93,5 @@ export default {
 }
 .image{
     max-width: 170px;
-    height: 100%;
 }
 </style>

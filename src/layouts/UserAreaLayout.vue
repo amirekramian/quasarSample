@@ -50,7 +50,7 @@ components:{
 },
 setup(){
     const UserAccountcomponent = 'UserAccountcomponent';
-    const UserLogedIn = ref(false);
+    const UserLogedIn = ref(true);
     const sideBarVisibility = ref(false)
     const sidebarToggle = () => {
         sideBarVisibility.value = !sideBarVisibility.value
