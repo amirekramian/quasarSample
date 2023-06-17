@@ -6,17 +6,39 @@
 <div><b>amir ekramian</b></div>
 <div class="userrole">administrator</div>
 </div>
-<div><q-icon name="menu" size="large" class="usermenu"></q-icon></div>
+<div>
+  <q-icon v-if="!drawervisibility" @click="toggledrawer" name="menu" size="large" class="usermenu">  </q-icon>
+  <q-icon v-if="drawervisibility" @click="toggledrawer" name="cancel" size="large" class="usermenu">  </q-icon>
+
+<div v-if="drawervisibility" class="usermenudrawer">
+<div>
+user account
+</div>
+<hr>
+<div class="logoutsection">
+  <q-icon name="logout" size="large" color="red"> </q-icon> logout
+</div>
+</div>
+</div>
 </div>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name:"UserAccountcomponent",
   setup(){
+    const drawervisibility = ref(false)
+    const toggledrawer = () => {
+      drawervisibility.value = !drawervisibility.value
 
+    }
+
+      return{
+        drawervisibility,
+        toggledrawer
+      }
   }
 })
 </script>
@@ -52,5 +74,17 @@ export default defineComponent({
 .usermenu{
   margin: 10px;
   color: #7c7c7c;
+}
+.usermenudrawer{
+  position: absolute;
+  width: 200px;
+  background: white;
+  border-radius: 5px;
+  padding: 15px;
+box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
+;
+}
+.logoutsection{
+  color: red;
 }
 </style>

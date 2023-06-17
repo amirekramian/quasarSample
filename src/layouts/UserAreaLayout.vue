@@ -6,11 +6,11 @@
                 <div v-if="sideBarVisibility" class="sidebar">
                 sidebar
                 </div>
-
-                <div class="headernav ">
-
+                <div class="rightside column">
+                <div class="headernav">
                     <div @click="sidebarToggle" class="menuArea">
-                        <q-icon name="menu" size="large" color="brown" ></q-icon>
+                        <q-icon v-if="!sideBarVisibility" name="menu" size="large" color="brown" ></q-icon>
+                        <q-icon v-if="sideBarVisibility" name="cancel" size="large" color="brown" ></q-icon>
                     </div>
 
                     <div class="userdetail">
@@ -25,17 +25,18 @@
                     <div class="logoarea">
                     <q-img class="logoimage" src="~/src/assets/images.png"></q-img>
                     <b>mocha coffee store</b>
-
                     </div>
+                </div>
+
+                <div class="content col">
+                  <q-page-container>
+                    <router-view />
+                  </q-page-container>
+                </div>
+
                 </div>
             </div>
         </header>
-      <q-page-container>
-        <router-view />
-      </q-page-container>
-      <footer>
-        footer
-      </footer>
     </q-layout>
   </template>
 
@@ -86,6 +87,7 @@ setup(){
 }
 .pagecontainer{
     display: flex;
+    width: 100%;
 
 }
 .menuArea{
@@ -112,6 +114,13 @@ setup(){
     flex-direction: row-reverse;
     width: 100%;
     padding: 20px;
-
   }
+  .rightside{
+    display: flex;
+    flex-direction: columns;
+    width: 100%;
+    height: 200px;
+  }
+.content{
+}
 </style>

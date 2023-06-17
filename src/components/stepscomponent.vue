@@ -3,14 +3,14 @@
     <div v-for="(item,index) in items" :key="index" class="itemcontainer">
         <div class="circle" :class="{Disabledcircle:activated<index+1, previuoscircle:activated>index+1}">
             <div class="innercircle" :class="{Disabledinnercircle:activated<index+1, previuosinnercircle:activated>index+1}">
-            <b>{{ index+1 }}</b>        
+            <b>{{ index+1 }}</b>
             </div>
         </div>
         <div class="row steptext" :class="{disabledsteptext:activated<index+1, previuossteptext:activated>index+1}">
-            <b>{{item }}</b>        
+            <b>{{item }}</b>
         </div>
     </div>
-    
+
 
 
   </div>
@@ -64,6 +64,7 @@ height: 100px;
     border-radius: 100% ;
 }
 .itemcontainer{
+  color: #8D6748;
     display: flex;
     flex-direction: column;
     justify-content: center;
