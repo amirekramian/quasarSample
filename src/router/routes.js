@@ -11,6 +11,15 @@ const routes = [
       {path:'signup3', component:() => import('src/pages/signuppage3.vue')},
       {path:'blogslist', component:() => import('pages/BlogList.vue')},
       {path:'qwe', component:() => import('layouts/UserAreaLayout.vue')},
+      {path:'qwe2', component:() => import('src/components/UserAccountcomponent.vue')},
+
+    ]
+  },
+  {
+    path:'/area',
+    component : () => import('layouts/UserAreaLayout.vue'),
+    children:[
+      {path:'blogs',component:()=> import('pages/BlogList.vue')}
     ]
   },
 

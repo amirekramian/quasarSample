@@ -10,11 +10,22 @@
                 <div class="headernav ">
 
                     <div @click="sidebarToggle" class="menuArea">
-                        <q-icon name="menu" size="large" ></q-icon>
+                        <q-icon name="menu" size="large" color="brown" ></q-icon>
                     </div>
 
                     <div class="userdetail">
-                        amir ekramian
+                        <component v-if="UserLogedIn" :is="UserAccountcomponent"></component>
+                    </div>
+                    <div v-if="!UserLogedIn">
+                      <q-btn color="brown" to="/signup">signup</q-btn>
+                    </div>
+                    <div v-if="!UserLogedIn">
+                      <q-btn outline color="brown" to="/signin">signin</q-btn>
+                    </div>
+                    <div class="logoarea">
+                    <q-img class="logoimage" src="~/src/assets/images.png"></q-img>
+                    <b>mocha coffee store</b>
+
                     </div>
                 </div>
             </div>
@@ -30,16 +41,24 @@
 
 <script>
 import { defineComponent,ref } from "vue";
+import UserAccountcomponent from "src/components/UserAccountcomponent.vue"
 
 export default defineComponent({
 name:"UserAreaLayout",
+components:{
+  UserAccountcomponent
+},
 setup(){
+    const UserAccountcomponent = 'UserAccountcomponent';
+    const UserLogedIn = ref(false);
     const sideBarVisibility = ref(false)
-    const sidebarToggle = () =>{
+    const sidebarToggle = () => {
         sideBarVisibility.value = !sideBarVisibility.value
     }
 
     return{
+      UserLogedIn,
+      UserAccountcomponent,
         sideBarVisibility,
         sidebarToggle
     }
@@ -75,12 +94,24 @@ setup(){
     font-size: 1.5rem ;
     padding:10px ;
     }
-    .userdetail{
+  .userdetail{
         display: flex;
         justify-content: center;
-        width: 200px;
-        background: #9b70488a;
+        width: 300px;
         height: 95%;
         border-radius: 10px;
-    }
+  }
+  .logoimage{
+    width: 40px;
+    margin: 5px;
+
+  }
+  .logoarea{
+    align-items: center;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    padding: 20px;
+
+  }
 </style>
