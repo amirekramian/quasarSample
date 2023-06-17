@@ -11,12 +11,13 @@
   <q-icon v-if="drawervisibility" @click="toggledrawer" name="cancel" size="large" class="usermenu">  </q-icon>
 
 <div v-if="drawervisibility" class="usermenudrawer">
-<div>
-user account
+<div class=" draweritem">
+<b >User Account</b>
 </div>
 <hr>
-<div class="logoutsection">
-  <q-icon name="logout" size="large" color="red"> </q-icon> logout
+<div class="logoutsection draweritem">
+  <q-icon to="/signin" name="logout" size="large" color="red"> </q-icon> <b>Logout</b>
+
 </div>
 </div>
 </div>
@@ -86,5 +87,11 @@ box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.4);
 }
 .logoutsection{
   color: red;
+}
+.draweritem:hover{
+  cursor: pointer;
+  border-radius:5px;
+  background: #8D6748;
+  color: white;
 }
 </style>

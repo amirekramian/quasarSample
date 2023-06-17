@@ -19,7 +19,9 @@ const routes = [
     path:'/area',
     component : () => import('layouts/UserAreaLayout.vue'),
     children:[
-      {path:'blogs',component:()=> import('pages/BlogList.vue')}
+      {path:'blogs',component:()=> import('pages/BlogList.vue')},
+      {path:'UserArea',component:()=> import('pages/UserAccountPage.vue')},
+
     ]
   },
 
