@@ -21,6 +21,8 @@ const routes = [
     children:[
       {path:'blogs',component:()=> import('pages/BlogList.vue')},
       {path:'UserArea',component:()=> import('pages/UserAccountPage.vue')},
+      {path:'asd',component:()=> import('components/CountryCardComponent.vue')},
+
 
     ]
   },
