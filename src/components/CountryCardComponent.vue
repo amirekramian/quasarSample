@@ -25,7 +25,12 @@ export default defineComponent({
   name:'CountryCardComponent',
   setup(){
     let info = null;
-    const header = {'X-Auth-Token':"8a9aaede82374a46bdf5caa18943330f"}
+    const config = {
+  headers:{
+    'X-Auth-Token': "8a9aaede82374a46bdf5caa18943330f",
+    'Access-Control-Allow-Origin': '*'
+  }
+};
     const countrylist = ref([
       {
         name:"england",
@@ -53,7 +58,7 @@ export default defineComponent({
 
     onMounted(()=>{
       axios
-      .get('https://api.football-data.org/v4/competitions/PL' ,'',header)
+      .get('https://api.football-data.org/v4/competitions/PL',config)
       .then(response => (console.log(response)))
     })
 

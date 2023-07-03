@@ -46,6 +46,7 @@ export default defineComponent({
 
 <style scoped>
 .componentcontainer{
+  z-index: 1;
   display: flex;
   justify-content: center;
   width: 100%;

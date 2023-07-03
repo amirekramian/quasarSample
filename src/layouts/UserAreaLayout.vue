@@ -4,7 +4,7 @@
             <div class="pagecontainer">
 
                 <div v-if="sideBarVisibility" class="sidebar">
-                sidebar
+                  <component :is="SidebarComponent"></component>
                 </div>
                 <div class="rightside column">
                 <div class="headernav">
@@ -42,15 +42,18 @@
 
 <script>
 import { defineComponent,ref } from "vue";
-import UserAccountcomponent from "src/components/UserAccountcomponent.vue"
+import UserAccountcomponent from "src/components/UserAccountcomponent.vue";
+import SidebarComponent from "src/components/SidebarComponent.vue"
 
 export default defineComponent({
 name:"UserAreaLayout",
 components:{
-  UserAccountcomponent
+  UserAccountcomponent,
+  SidebarComponent
 },
 setup(){
     const UserAccountcomponent = 'UserAccountcomponent';
+    const SidebarComponent = 'SidebarComponent';
     const UserLogedIn = ref(true);
     const sideBarVisibility = ref(false)
     const sidebarToggle = () => {
@@ -60,6 +63,7 @@ setup(){
     return{
       UserLogedIn,
       UserAccountcomponent,
+      SidebarComponent,
         sideBarVisibility,
         sidebarToggle
     }

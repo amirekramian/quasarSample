@@ -12,6 +12,7 @@ const routes = [
       {path:'blogslist', component:() => import('pages/BlogList.vue')},
       {path:'qwe', component:() => import('layouts/UserAreaLayout.vue')},
       {path:'qwe2', component:() => import('src/components/UserAccountcomponent.vue')},
+      {path:'qwe3', component:() => import('src/components/SidebarComponent.vue')},
 
     ]
   },
