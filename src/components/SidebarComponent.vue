@@ -19,7 +19,7 @@ export default {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: baseline;
     align-items: center;
 }
 
